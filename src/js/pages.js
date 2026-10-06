@@ -1,12 +1,20 @@
 export const soon = {
-  title: "Come Back Later...",
+  title: "Tunggu dulu...",
   body: `<br />
-    <h1>Hi, you come to early</h1>
+    <h1>Fayza dongo, mencetnya kecepetan.</h1>
     <br /><br /><br />
     <p>
-        I know this page is very interesting for you, especially for your special day but.<br />
-        You need to be patience until the time has come, right ?
-    </p>`,
+        tunggu tanggal 10 nanti, baru lo boleh buka.<br />
+        siapin mental, air mata, sama kepalan tangan buat nonjok gue nanti.<br />
+        jangan kepo dulu, anjing.
+    </p>
+    <br /><br />
+    <div id="countdown" style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <div class="cd-box"><div id="cd-d" class="cd-num">00</div><div class="cd-label">Hari</div></div>
+      <div class="cd-box"><div id="cd-h" class="cd-num">00</div><div class="cd-label">Jam</div></div>
+      <div class="cd-box"><div id="cd-m" class="cd-num">00</div><div class="cd-label">Menit</div></div>
+      <div class="cd-box"><div id="cd-s" class="cd-num">00</div><div class="cd-label">Detik</div></div>
+    </div>`,
 };
 
 export const late = {

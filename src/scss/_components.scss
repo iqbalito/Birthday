@@ -152,6 +152,31 @@
   }
 }
 
+// COUNTDOWN
+
+.cd-box {
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 1rem;
+  padding: 1rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  min-width: 5rem;
+  backdrop-filter: blur(4px);
+}
+
+.cd-num {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.cd-label {
+  font-size: 1rem;
+  opacity: 0.8;
+  margin-top: 0.25rem;
+}
+
 // SCROLL
 
 .scroll {
