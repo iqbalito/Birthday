@@ -50,15 +50,23 @@ const setRemoteData = async () => {
     }
     let markup = "";
     if (msgPath) {
-      const article = msgPath.split("/").pop();
-      const res = await axios.get(
-        `https://api.telegra.ph/getPage/${article}?return_content=true`
-      );
-      const { content } = res.data.result;
-      markup = content.reduce(
-        (string, node) => string + generateMarkupRemote(node),
-        ""
-      );
+      try {
+        const article = msgPath.startsWith("http")
+          ? msgPath.split("/").pop()
+          : msgPath;
+        const res = await axios.get(
+          `https://api.telegra.ph/getPage/${article}?return_content=true`
+        );
+        if (res.data.result && res.data.result.content) {
+          const { content } = res.data.result;
+          markup = content.reduce(
+            (string, node) => string + generateMarkupRemote(node),
+            ""
+          );
+        }
+      } catch {
+        // skip markup if telegraph fetch fails
+      }
     }
     await setPic(pic);
     genIndex(markup);
