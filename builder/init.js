@@ -10,10 +10,12 @@ const {
 
 require("dotenv").config();
 
-if (!process.env.NAME) throw new Error("Please specify NAME in environment.");
-if (!process.env.PIC) throw new Error("Please specify PIC in environment.");
-
-const picPath = process.env.PIC;
+const NAME = process.env.NAME || "Fayza";
+const PIC = process.env.PIC || "sample-pic.jpeg";
+const NICKNAME = process.env.NICKNAME || "Fayza";
+const HBD_MSG = process.env.HBD_MSG || "Happy Birthday Fayza!";
+const OPEN_DATE = process.env.OPEN_DATE || "2026-10-10";
+const picPath = PIC;
 const msgPath = process.env.SCROLL_MSG;
 
 //Local initialization
@@ -37,14 +39,19 @@ const setLocalData = async () => {
 //Remote initialization
 const setRemoteData = async () => {
   try {
-    let res = await axios.get(picPath, {
-      responseType: "arraybuffer",
-    });
-    const pic = res.data;
+    let pic;
+    if (picPath.startsWith("http")) {
+      const res = await axios.get(picPath, {
+        responseType: "arraybuffer",
+      });
+      pic = res.data;
+    } else {
+      pic = path.join(__dirname, "../local/", picPath);
+    }
     let markup = "";
     if (msgPath) {
       const article = msgPath.split("/").pop();
-      res = await axios.get(
+      const res = await axios.get(
         `https://api.telegra.ph/getPage/${article}?return_content=true`
       );
       const { content } = res.data.result;
