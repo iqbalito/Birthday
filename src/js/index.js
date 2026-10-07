@@ -1,12 +1,12 @@
 //jshint esversion:8
 
-import { isBDay } from "./ext/openDate.js";
+import { isBDay, OPEN_DATE } from "./ext/openDate.js";
 import setPage from "./ext/setPage.js";
 import { late, soon } from "./pages.js";
 import { animate } from "./animation.js";
 
 function startCountdown() {
-  const target = new Date("2026-10-10T00:00:00").getTime();
+  const target = new Date(`${OPEN_DATE}T00:00:00`).getTime();
   const dEl = document.getElementById("cd-d");
   const hEl = document.getElementById("cd-h");
   const mEl = document.getElementById("cd-m");
@@ -30,11 +30,7 @@ function startCountdown() {
 
 /******************************************************* SETUP ************************************************************/
 
-if (process.env.OPEN_DATE) {
-  const status = isBDay();
-  if (status === "IS_EARLY") { setPage(soon); startCountdown(); }
-  if (status === "IS_LATE") setPage(late);
-  if (status === "ON_TIME") animate();
-} else {
-  animate();
-}
+const status = isBDay();
+if (status === "IS_EARLY") { setPage(soon); startCountdown(); }
+if (status === "IS_LATE") setPage(late);
+if (status === "ON_TIME") animate();
